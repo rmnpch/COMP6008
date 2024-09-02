@@ -1,33 +1,38 @@
 import java.util.*;
 
 public class QueueTest {
-    public static void main(String[] args) {
-        Queue<Integer> qLinked = new LinkedList<>();
-        // Queue<Integer> qArray = new ArrayList<>();
-        // System.out.println("isEmpty returns " + q.isEmpty());
+    private static final int numOperations = 300_000;
 
-        // q.add(4);
-        // q.add(27);
-        // System.out.println("Queue is now: " + q + "size is " + q.size());
+    public static void main(String[] args) {
+        List<Integer> qLinked = new LinkedList<>();
+        List<Integer> qArray = new ArrayList<>();
+
+        System.err.println("Number of operations: "+numOperations);
+        System.out.println("Linked list performance: \n");
+        benchmark(qLinked);
+        System.out.println("Array list performance: \n");
+        benchmark(qArray);
+    }
+
+    private static void benchmark(List<Integer> queue) {
+
+        // Enqueue benchmark
         long startTime = System.currentTimeMillis();
-        for (int i = 0; i < 100000; i++) {
-            qLinked.add(i);
+        for (int i = 0; i < numOperations; i++) {
+            queue.add(i);
         }
         long endTime = System.currentTimeMillis();
-        long executionTime = endTime - startTime;
-        System.out.println("Queueing time:  " + executionTime + "ms");
+        long enqueueTime = endTime - startTime;
+
+        // Dequeue benchmark
         startTime = System.currentTimeMillis();
-        for (int i = 0; i < 100000; i++) {
-            qLinked.remove();
+        for (int i = 0; i < numOperations; i++) {
+            queue.remove(0);
         }
         endTime = System.currentTimeMillis();
-        executionTime = endTime - startTime;
-        System.out.println("Dequeueing time:    " + executionTime + "ms");
-        // System.out.println("Dequeue - head was: " + head);
-        // head = qLinked.remove();
-        // System.out.println("Dequeue again - head was: " + head);
+        long dequeueTime = endTime - startTime;
 
-        // System.out.println("Queue is now: " + qLinked);
-        // System.out.println("Size is now: " + qLinked.size());
+        System.out.printf("\tEnqueue time: %d ms\n", enqueueTime);
+        System.out.printf("\tDequeue time: %d ms\n", dequeueTime);
     }
 }

@@ -1,11 +1,11 @@
 import java.util.*;
 import java.io.*;
 
-public class stackTesting {
+public class StackTesting {
 
     String path = "";
 
-    public stackTesting(String path) {
+    public StackTesting(String path) {
         this.path = path;
     }
 
@@ -42,8 +42,8 @@ public class stackTesting {
 
         String path = "//student.scu.ad/Home/TgcSCUHome/rdepai10/Documents/COMP6008/Module 1/html_file.txt";
 
-        stackTesting std = new stackTesting(path);
-        // std is an object from the stackTesting class, which can be used to run the
+        StackTesting std = new StackTesting(path);
+        // std is an object from the StackTesting class, which can be used to run the
         // program
         std.tagCheck();
         // System.out.println(parenCheck("((()))")); // expected true
