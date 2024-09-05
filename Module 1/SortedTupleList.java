@@ -1,7 +1,6 @@
 import java.util.*;
 
 class SortedTupleList {
-
     public static class Tuple {
         int x, y;
 
@@ -10,23 +9,19 @@ class SortedTupleList {
             this.y = y;
         }
 
-        boolean equal (Tuple other) { //operation
+        boolean equal(Tuple other) {
             if (this.x == other.x && this.y == other.y)
                 return true;
             else
-                 return false;
-   } 
+                return false;
+        }
+
         public boolean greaterThan(Tuple other) {
             if (this.x > other.x)
                 return true;
             if (this.x == other.x && this.y > other.y)
                 return true;
             return false;
-        }
-
-        @Override
-        public String toString() {
-            return "(" + x + ", " + y + ")";
         }
     }
 
@@ -43,30 +38,21 @@ class SortedTupleList {
                 break;
 
             Tuple newTuple = new Tuple(a, b);
-            insertInOrder(list, newTuple);
+            insert(list, newTuple);
         }
-
         System.out.println("Sorted tuples:");
         for (Tuple t : list) {
             System.out.println("\t(" + t.x + ", " + t.y + ")");
         }
-
         scanner.close();
     }
 
-    public static void insertInOrder(List<Tuple> list, Tuple newTuple) {
-        // int position = 0;
+    public static void insert(List<Tuple> list, Tuple newTuple) {
+        int position = list.size(); // Start from the end of the list
 
-        for (int position = list.size(); position>0; position--){
-            if (newTuple.greaterThan(list.get(position-1))){
-                list.add(position, newTuple);
-                break;
-            }
+        while (position > 0 && !newTuple.greaterThan(list.get(position - 1))) {
+            position--;
         }
-
-        // while (position < list.size() && !newTuple.greaterThan(list.get(position))) {
-            //     position++;
-            // }
-            // list.add(position, newTuple);
+        list.add(position, newTuple);
     }
 }

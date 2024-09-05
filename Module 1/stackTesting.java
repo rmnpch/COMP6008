@@ -2,7 +2,6 @@ import java.util.*;
 import java.io.*;
 
 public class StackTesting {
-
     String path = "";
 
     public StackTesting(String path) {
@@ -20,35 +19,28 @@ public class StackTesting {
                 for (String e : tokens) {
                     if (e.charAt(0) == '<' && e.charAt(1) != '/')
                         symStack.push(e);
-                    else if (e.charAt(0) == '<' && e.charAt(1) == '/')
-                        symStack.pop();
+                        
+                    else if (e.charAt(0) == '<' && e.charAt(1) == '/') {
+                        if (symStack.empty())
+                            System.err.println("Tags being closed before they are being opened.");
+                        else
+                            symStack.pop();
+                    }
                 }
             }
-
             br.close();
-
         } catch (FileNotFoundException e) {
-            System.err.println("File could not be found.\nPlease make sure the path to the .csv file is correct.");
+            System.err.println("File could not be found.\nPlease make sure the path to the file is correct.");
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        System.err.println( symStack.isEmpty());
-
+        System.err.println(symStack.isEmpty());
     }
 
     public static void main(String[] args) {
-
-        String path = "//student.scu.ad/Home/TgcSCUHome/rdepai10/Documents/COMP6008/Module 1/html_file.txt";
-
+        String path = "D:\\OneDrive - Southern Cross University\\SCU\\Term 4\\COMP6008 Data Structure and Algorithms\\A1\\Module 1\\html_file.txt";
         StackTesting std = new StackTesting(path);
-        // std is an object from the StackTesting class, which can be used to run the
-        // program
         std.tagCheck();
-        // System.out.println(parenCheck("((()))")); // expected true
-        // System.out.println(parenCheck("((()()))")); // expected true
-        // System.out.println(parenCheck("(()")); // expected false
-        // System.out.println(parenCheck(")(")); // expected false
     }
 }

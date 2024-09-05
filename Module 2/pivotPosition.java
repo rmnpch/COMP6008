@@ -1,23 +1,34 @@
-import java.util.Arrays;
-
-public class pivotPosition {
+public class PivotPosition {
 
     public static void main(String[] args) {
-        int[] testList = { 54, 26, 93, 17, 77, 31, 44, 55, 20 };
-        System.out.println("Start point: " + Arrays.toString(testList));
+        int[] testList = ArrayUtils.generateRandomArray(200000, 8);
 
         long startTime = System.currentTimeMillis();
+
         QuickSort(testList, 0, testList.length - 1);
+        
         long endTime = System.currentTimeMillis();
 
-        long delta = endTime - startTime;
+        System.out.printf("Quick sort execution time: %d ms.", endTime-startTime);
+        
+        startTime = System.currentTimeMillis();
 
-        System.out.println("Quick sort execution time: " + delta);
-        System.out.println("Final result: " + Arrays.toString(testList));
+        QuickSortSwapping(testList, 0, testList.length - 1);
+        
+        endTime = System.currentTimeMillis();
+
+        System.out.printf("\nQuick sort swapping pivot index execution time: %d ms.", endTime-startTime);
     }
 
     static void QuickSort(int[] list, int startIndex, int endIndex) {
-
+        if (startIndex < endIndex) {
+            int pivotIndex = partition(list, startIndex, endIndex);
+            QuickSort(list, startIndex, pivotIndex - 1);
+            QuickSort(list, pivotIndex + 1, endIndex);
+        }
+    }
+    
+    static void QuickSortSwapping(int[] list, int startIndex, int endIndex) {
         if (startIndex < endIndex) {
             swapPivot(list, startIndex, endIndex);
             int pivotIndex = partition(list, startIndex, endIndex);

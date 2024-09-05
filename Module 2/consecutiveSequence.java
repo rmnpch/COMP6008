@@ -1,12 +1,12 @@
 import java.util.Arrays;
 
-public class consecutiveSequence {
+public class ConsecutiveSequence {
     static int longestSeq = 0;
 
     public static void main(String[] args) {
-        int[] X = { 8, 3, 2, 5, 10, 9, 7, 6, 11 };
-        System.out.println("Start point: " + Arrays.toString(X));
-        QuickSort(X, 0, X.length - 1);
+        int[] X = ArrayUtils.generateRandomArray(9, 8);
+        System.out.println("Initial input: " + Arrays.toString(X));
+        QuickSort(X, 0, X.length-1);
         countSeq(X);
         System.out.println("Final result: " + Arrays.toString(X));
         System.out.println("Longest sequence: " + longestSeq);
@@ -19,7 +19,7 @@ public class consecutiveSequence {
             QuickSort(list, pivotIndex + 1, endIndex);
         }
     }
-
+    
     static int partition(int[] list, int startIndex, int endIndex) {
         int pivotVal = list[startIndex];
         int leftMark = startIndex + 1;
@@ -49,12 +49,10 @@ public class consecutiveSequence {
         for (int i = 0; i < list.length - 1; i++) {
             if (list[i] + 1 == list[i + 1]) {
                 currentSeq++;
-                System.out.println("currentSeq");
             } else {
                 currentSeq = 1;
             }
             longestSeq = currentSeq > longestSeq ? currentSeq : longestSeq;
         }
     }
-
 }
