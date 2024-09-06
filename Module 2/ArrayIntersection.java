@@ -3,24 +3,28 @@ import java.util.*;
 public class ArrayIntersection {
     public static void findIntersection(int[] X, int[] Y) {
         long startTime = System.currentTimeMillis();
-        HashSet<Integer> X_set = new HashSet<>();
-        for (int num : X) {
-            if (!X_set.contains(num)) // Remove repetitive items
-                X_set.add(num);
-        }
-        // Find intersection elements
-        HashSet<Integer> intersectionSet = new HashSet<>();
-        for (int num : Y) {
-            if (X_set.contains(num) && !intersectionSet.contains(num))
-                intersectionSet.add(num);
+        ArrayList<Integer> intersectionList = new ArrayList<>();
+        Arrays.sort(X);
+        Arrays.sort(Y);
+        int Xpointer = 0;
+        int Ypointer = 0;
 
+        while (Xpointer < X.length && Ypointer < Y.length) {
+            if (X[Xpointer] == Y[Ypointer] && !intersectionList.contains(X[Xpointer])) {
+                intersectionList.add(X[Xpointer]);
+                Xpointer++;
+            } else if (X[Xpointer] < Y[Ypointer]) {
+                Xpointer++;
+            } else {
+                Ypointer++;
+            }
         }
+        // System.out.print("Intersection of X and Y: ");
+        // System.out.println(intersectionList);
 
-        System.out.print("Intersection of X and Y: ");
-        System.out.println(intersectionSet);
         long endTime = System.currentTimeMillis();
         long deltaHS = endTime - startTime;
-        System.out.println("Hash set execution time: " + deltaHS + " ms.");
+        System.out.println("Pointer approach execution time: " + deltaHS + " ms.");
 
     }
 
@@ -35,7 +39,6 @@ public class ArrayIntersection {
                 }
             }
         }
-        System.out.println(intersectionList.size());
         long endTime = System.currentTimeMillis();
         long deltaBF = endTime - startTime;
         System.out.println("Brute force execution time: " + deltaBF + " ms.");
