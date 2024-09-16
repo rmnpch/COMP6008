@@ -1,8 +1,8 @@
 public class FirstOccurence {
     public static void main(String[] args) {
         int[] testList = { 1, 2, 2, 2, 2, 2, 32, 47 };
-        searchResult(testList, 13);
-        searchResult(testList, 2);
+        int target = 32;
+        searchResult(testList, target);
     }
 
     static void searchResult(int[] list, int target) {
@@ -14,7 +14,7 @@ public class FirstOccurence {
             while (list[result] == list[result - 1] && result >= 0) {
                 result--;
             }
-            System.out.println("Search for first occurrence of " + target + " found at index of " + result);
+            System.out.println("Element " + target + " found at index " + result);
         }
     }
 
