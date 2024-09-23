@@ -1,4 +1,4 @@
-import java.util.Random;
+import java.util.*;
 
 public class SortEfficiency {
 
@@ -14,12 +14,18 @@ public class SortEfficiency {
 
     public static void main(String[] args) {
         int[] array = generateRandomArray(10);
-        int zeroIndex=0;
+        List<Integer> array2 = new ArrayList<>();
+        int zeroIndex = 0;
 
         for (int i = 0; i < array.length; i++) {
-            if (array[i] > 0)
-                array[i]++;
-
+            if (array[i] < 0) {
+                array2.add(0, array[i]);
+                zeroIndex++;
+            } else if (array[i]==0){
+                array2.add(zeroIndex,array[i]);
+            }
+            else array2.add(array[i]);
         }
+        System.err.println(array2);
     }
 }

@@ -1,8 +1,8 @@
 public class PivotPosition {
 
     public static void main(String[] args) {
-        int[] testList = ArrayUtils.generateRandomArray(290000, 8);
-        int[] testList2 = new int[500000];
+        int[] testList = ArrayUtils.generateRandomArray(430000, 8);
+        int[] testList2 = new int[430000];
         for (int i = 0; i < testList.length; i++) {
             testList2[i] = testList[i];
         }
