@@ -2,14 +2,12 @@ import java.util.Scanner;
 
 public class MatchIndex {
     public static void main(String[] args) {
-        // Scanner scanner = new Scanner(System.in);
-        // System.out.print("Enter the first string: ");
-        // String str = scanner.nextLine();
-        // System.out.print("Enter the string to be matched: ");
-        // String sub = scanner.nextLine();
-        // scanner.close();
-        String str = "Welcome to Java";
-        String sub = "come";
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the first string: ");
+        String str = scanner.nextLine();
+        System.out.print("Enter the string to be matched: ");
+        String sub = scanner.nextLine();
+        scanner.close();
         int pointerSub = 0;
 
         if (sub.length() > str.length()) {

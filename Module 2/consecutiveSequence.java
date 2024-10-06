@@ -6,7 +6,7 @@ public class ConsecutiveSequence {
     public static void main(String[] args) {
         int[] X = ArrayUtils.generateRandomArray(9, 8);
         System.out.println("Initial input: " + Arrays.toString(X));
-        QuickSort(X, 0, X.length-1);
+        QuickSort(X, 0, X.length - 1);
         countSeq(X);
         System.out.println("Final result: " + Arrays.toString(X));
         System.out.println("Longest sequence: " + longestSeq);
@@ -19,7 +19,7 @@ public class ConsecutiveSequence {
             QuickSort(list, pivotIndex + 1, endIndex);
         }
     }
-    
+
     static int partition(int[] list, int startIndex, int endIndex) {
         int pivotVal = list[startIndex];
         int leftMark = startIndex + 1;

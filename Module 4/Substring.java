@@ -6,7 +6,6 @@ public class Substring {
         System.out.print("Enter a string: ");
         String str = scanner.nextLine();
         scanner.close();
-
         // String str = new String("abcdefa");
         String currentStr = new String("");
         String longestStr = new String("");
